@@ -13,11 +13,6 @@ const app = express();
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
-// default response for any other request (not found)
-app.use((req,res) => {
-    res.status(404).end();
-});
-
 // connect to database 
 const db = mysql.createConnection(
     {
@@ -30,6 +25,17 @@ const db = mysql.createConnection(
     },
     console.log('Connected to the election database.')
 );
+
+db.query(`SELECT * FROM candidates`, (err, rows) => {
+    console.log(rows);
+});
+
+// default response for any other request (not found)
+app.use((req,res) => {
+    res.status(404).end();
+});
+
+
 
 // starts express.js
 app.listen(PORT, () => {
