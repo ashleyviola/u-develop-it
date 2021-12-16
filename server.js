@@ -7,7 +7,7 @@ const mysql = require('mysql2');
 const inputCheck = require('./utils/inputCheck');
 
 //port designation and app expression
-const PORT = process.env.PORR || 3001;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 //Express.js middleware
